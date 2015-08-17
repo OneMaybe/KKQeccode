@@ -18,6 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        let msg = url.host?.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        
+        let alert = UIAlertController(title: "新消息", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        
+        return true
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
